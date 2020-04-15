@@ -2,10 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Main from './Pages/Main'
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
+    <Router>
+      <Route path="/" exact component={Main}/>
+      <Route path="/login" exact component={App}/>
+    </Router>
     <App />
   </React.StrictMode>,
   document.getElementById('root')

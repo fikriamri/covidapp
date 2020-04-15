@@ -3,10 +3,12 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import PhoneIcon from '@material-ui/icons/Phone';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -29,6 +31,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SimpleContainer() {
     const classes = useStyles();
+    const [value, setValue] = React.useState('female');
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
   return (
     <React.Fragment>
       <CssBaseline />
@@ -39,26 +46,17 @@ export default function SimpleContainer() {
           container
           spacing={0}
           direction="column"
-          alignItems="center"
-          justify="center"
+          justify="flex-start"
         >
             <div className={classes.margin}>
-                <Grid container spacing={1} alignItems="flex-end" style={{ marginTop: 10}}>
-                        <Grid item >
-                            <AccountCircle />
-                        </Grid>
-                        <Grid item >
-                            <TextField fullWidth id="input-with-icon-grid" label="Nama" />
-                        </Grid>
-                </Grid>
-                <Grid container spacing={1} alignItems="flex-end" style={{ marginTop: 10}}>
-                        <Grid item >
-                            <PhoneIcon />
-                        </Grid>
-                        <Grid item >
-                            <TextField fullWidth id="input-with-icon-grid" label="Nomor Telepon" />
-                        </Grid>
-                </Grid>
+            <FormControl component="fieldset">
+                <FormLabel component="legend">Bagaimana Kondisi anda sekarang? </FormLabel>
+                <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
+                    <FormControlLabel value="female" control={<Radio />} label="Sangat Sehat" />
+                    <FormControlLabel value="male" control={<Radio />} label="Kurang Sehat" />
+                    <FormControlLabel value="other" control={<Radio />} label="Sakit" />
+                </RadioGroup>
+            </FormControl>
             </div>
         </Grid>
             </Paper>
