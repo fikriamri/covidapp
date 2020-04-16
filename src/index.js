@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Main from './Pages/Main'
+import Login from './Pages/Login'
+import InputPasien from './Pages/InputPasien'
+import GoogleMaps from './Pages/GoogleMaps'
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -10,9 +13,11 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Route path="/" exact component={Main}/>
-      <Route path="/login" exact component={App}/>
+      <Route path="/App" exact component={App}/>
+      <Route path="/login" exact component={Login}/>
+      <Route path="/input-pasien" exact component={InputPasien}/>
+      <Route path="/google-maps" exact component={GoogleMaps}/>
     </Router>
-    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
