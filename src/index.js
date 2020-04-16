@@ -12,11 +12,13 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <Route path="/" exact component={Main}/>
+      {/* needed for immediately test function in netlify */}
+      <Route path="/" exact component={GoogleMaps}/>
+      {/* <Route path="/" exact component={Main}/>
       <Route path="/App" exact component={App}/>
       <Route path="/login" exact component={Login}/>
       <Route path="/input-pasien" exact component={InputPasien}/>
-      <Route path="/google-maps" exact component={GoogleMaps}/>
+      <Route path="/google-maps" exact component={GoogleMaps}/> */}
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

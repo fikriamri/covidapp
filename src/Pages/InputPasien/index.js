@@ -53,10 +53,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignIn() {
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+  const [selectedDate, setSelectedDate] = React.useState('2020-04-04');
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
+  const handleDateChange = (event) => {
+    setSelectedDate(event.target.value);
+    console.log(typeof event.target.value)
+    console.log(selectedDate)
   };
 
   const [value, setValue] = React.useState('wanita');
@@ -111,6 +113,7 @@ export default function SignIn() {
             autoComplete="no_hp"
           />
           <TextField
+            variant="outlined"
             id="date"
             label="Tanggal Lahir"
             type="date"
