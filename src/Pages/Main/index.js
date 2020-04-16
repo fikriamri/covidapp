@@ -9,6 +9,8 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,12 +21,21 @@ const useStyles = makeStyles((theme) => ({
         width: theme.spacing(50),
         height: theme.spacing(100),
       },
+    },
     margin: {
-        margin: theme.spacing(3),
+        margin: theme.spacing(2),
       },
-      form: {
-        width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(1),
+    form: {
+      width: '100%', // Fix IE 11 issue.
+      marginTop: theme.spacing(1),
+    },
+    paper: {
+      padding: theme.spacing(2)
+    },
+    textField: {
+      '& > *': {
+        margin: theme.spacing(1),
+        width: '10ch',
       },
     },
   }));
@@ -41,20 +52,38 @@ export default function SimpleContainer() {
       <CssBaseline />
       <Container maxWidth="sm">
         <div className={classes.root}>
-            <Paper style={{ padding: 10}}>
+            <Paper className={classes.paper}>
             <Grid
           container
           spacing={0}
           direction="column"
-          justify="flex-start"
+          alignContent="center"
         >
             <div className={classes.margin}>
             <FormControl component="fieldset">
                 <FormLabel component="legend">Bagaimana Kondisi anda sekarang? </FormLabel>
-                <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
+                <RadioGroup aria-label="condition" name="condition" value={value} onChange={handleChange}>
                     <FormControlLabel value="female" control={<Radio />} label="Sangat Sehat" />
                     <FormControlLabel value="male" control={<Radio />} label="Kurang Sehat" />
                     <FormControlLabel value="other" control={<Radio />} label="Sakit" />
+                </RadioGroup>
+            </FormControl>
+            </div>
+            <div className={classes.margin}>
+            <FormControl component="fieldset">
+            <FormLabel component="legend">Berapa suhu tubuh anda sekarang? </FormLabel>
+              <form className={classes.textField} noValidate autoComplete="off">
+                <TextField id="filled-basic" variant="filled" />
+              </form>
+              <Typography>derajat celsius</Typography>
+            </FormControl>
+            </div>
+            <div className={classes.margin}>
+            <FormControl component="fieldset">
+                <FormLabel component="legend">Apakah anda sedang sakit demam? </FormLabel>
+                <RadioGroup aria-label="demam" name="demam" value={value} onChange={handleChange}>
+                    <FormControlLabel value="ya" control={<Radio />} label="Ya" />
+                    <FormControlLabel value="tidak" control={<Radio />} label="Tidak" />
                 </RadioGroup>
             </FormControl>
             </div>
