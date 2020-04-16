@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import Main from './Pages/Main'
+import Survey from './Pages/Survey'
 import Login from './Pages/Login'
+import Register from './Pages/Register'
 import InputPasien from './Pages/InputPasien'
 import GoogleMaps from './Pages/GoogleMaps'
 import * as serviceWorker from './serviceWorker';
@@ -17,6 +17,9 @@ ReactDOM.render(
       {/* <Route path="/" exact component={Main}/>
       <Route path="/App" exact component={App}/>
       <Route path="/login" exact component={Login}/>
+      <Route path="/" exact component={Login}/>
+      <Route path="/register" exact component={Register}/>
+      <Route path="/survey" exact component={Survey}/>
       <Route path="/input-pasien" exact component={InputPasien}/>
       <Route path="/google-maps" exact component={GoogleMaps}/> */}
     </Router>
