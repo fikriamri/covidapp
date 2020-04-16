@@ -22,6 +22,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import FormLabel from '@material-ui/core/FormLabel';
+import axios from 'axios';
 
 function Copyright() {
   return (
@@ -88,6 +89,89 @@ export default function SignIn() {
   };
   const classes = useStyles();
 
+  const [coordinates, setCoordinates] = React.useState({
+    latitude: '',
+    longitude: ''
+  })
+
+  const [userAddress, setUserAddress] = React.useState('');
+  
+  /**
+   * @method handleGetLocation
+   * @summary Get user location using navigator geolocation.
+   * @return {undefined}
+   */
+  const handleGetLocation = (e) => {
+    e.preventDefault();
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(handleGetCoordinates, handleLocationError);
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
+  }
+
+  /**
+   * @method handleGetCoordinates
+   * @summary Set coordinates with user location coordinates.
+   * @return {undefined}
+   */
+  const handleGetCoordinates = (position) => {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    console.log(latitude)
+    setCoordinates({
+      latitude,
+      longitude
+    });
+    handleGetUserLocation(latitude, longitude);
+  }
+
+  /**
+   * @method handleLocationError
+   * @summary Alerting message of error if error occur.
+   * @return {undefined}
+   */
+  const handleLocationError = (error) => {
+    switch(error.code) {
+      case error.PERMISSION_DENIED:
+        alert("User denied the request for Geolocation.")
+        break;
+      case error.POSITION_UNAVAILABLE:
+        alert("Location information is unavailable.")
+        break;
+      case error.TIMEOUT:
+        alert("The request to get user location timed out.")
+        break;
+      case error.UNKNOWN_ERROR:
+        alert("An unknown error occurred.")
+        break;
+      default:
+        alert("An unknown error occurred.")
+        break;
+    }
+  }
+
+  /**
+   * @method handleGetUserLocation
+   * @summary Get User Location using Google API
+   * @param {string} latitude - User's latitude coordinates
+   * @param {string} longitude - User's longitude coordinates
+   * @return {undefined}
+   */
+  const handleGetUserLocation = async (latitude, longitude) => {
+    const baseUrl = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=';
+    const apiKey = '&key=AIzaSyAtJjcjFBzjxF908drCFRGAXBF-EvefsSo';
+    const url = `${baseUrl}${latitude},${longitude}${apiKey}`;
+
+    await axios
+      .get(url)
+      .then((response) => {
+        const userAddress = response.data.results[0].formatted_address;
+        console.log(response.data.results[0].formatted_address);
+        setUserAddress(userAddress);
+      });
+  }
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -127,6 +211,19 @@ export default function SignIn() {
             <FormControlLabel value="tidak" control={<Radio />} label="Tidak" />
             <FormControlLabel value="sakit" control={<Radio />} label="Sakit" />
           </RadioGroup>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="secondary"
+            className={classes.submit}
+            onClick={handleGetLocation}
+          >
+            Share My Location
+          </Button>
+          <p>Your Latitude: {coordinates.latitude}</p>
+          <p>Your Longitude: {coordinates.longitude}</p>
+          <p>Your Location: {userAddress}</p>
           <Button
             type="submit"
             fullWidth
