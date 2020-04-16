@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import Main from './Pages/Main'
+import Survey from './Pages/Survey'
 import Login from './Pages/Login'
 import Register from './Pages/Register'
 import InputPasien from './Pages/InputPasien'
@@ -15,7 +14,7 @@ ReactDOM.render(
     <Router>
       <Route path="/" exact component={Login}/>
       <Route path="/register" exact component={Register}/>
-      <Route path="/main" exact component={Main}/>
+      <Route path="/survey" exact component={Survey}/>
       <Route path="/input-pasien" exact component={InputPasien}/>
       <Route path="/google-maps" exact component={GoogleMaps}/>
     </Router>
