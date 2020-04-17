@@ -52,28 +52,112 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
-  const [selectedDate, setSelectedDate] = React.useState('2020-04-04');
+export default function InputPasien() {
+  const [nama, setNama] = React.useState('');
 
-  const handleDateChange = (event) => {
-    setSelectedDate(event.target.value);
-    console.log(typeof event.target.value)
-    console.log(selectedDate)
+  const handleNamaChange = (event) => {
+    setNama(event.target.value);
+    console.log({
+      nama,
+      nomorHandphone,
+      tanggalLahir,
+      jenisKelamin,
+      kode,
+      status,
+      rumahSakitId
+    });
+  }
+
+  const [nomorHandphone, setNomorHandphone] = React.useState('');
+
+  const handleNomorHandphoneChange = (event) => {
+    setNomorHandphone(event.target.value);
+    console.log({
+      nama,
+      nomorHandphone,
+      tanggalLahir,
+      jenisKelamin,
+      kode,
+      status,
+      rumahSakitId
+    });
+  }
+
+  const [tanggalLahir, setTanggalLahir] = React.useState('2020-04-04');
+
+  const handleTanggalLahirChange = (event) => {
+    setTanggalLahir(event.target.value);
+    console.log({
+      nama,
+      nomorHandphone,
+      tanggalLahir,
+      jenisKelamin,
+      kode,
+      status,
+      rumahSakitId
+    });
   };
 
-  const [value, setValue] = React.useState('wanita');
-  console.log(value);
+  const [jenisKelamin, setJenisKelamin] = React.useState('perempuan');
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
-    console.log(value);
+  const handleJenisKelaminChange = (event) => {
+    setJenisKelamin(event.target.value);
+    console.log({
+      nama,
+      nomorHandphone,
+      tanggalLahir,
+      jenisKelamin,
+      kode,
+      status,
+      rumahSakitId
+    });
   };
+
+  const [kode, setKode] = React.useState('');
+
+  const handleKodeChange = (event) => {
+    setKode(event.target.value);
+    console.log({
+      nama,
+      nomorHandphone,
+      tanggalLahir,
+      jenisKelamin,
+      kode,
+      status,
+      rumahSakitId
+    });
+  }
 
   const [status, setStatus] = React.useState('');
 
   const handleStatusChange = (event) => {
-    setStatus(event.target.value)
+    setStatus(event.target.value);
+    console.log({
+      nama,
+      nomorHandphone,
+      tanggalLahir,
+      jenisKelamin,
+      kode,
+      status,
+      rumahSakitId
+    });
   };
+
+  const [rumahSakitId, setRumahSakitId] = React.useState('');
+
+  const handleRumahSakitIdChange = (event) => {
+    setRumahSakitId(event.target.value);
+    console.log({
+      nama,
+      nomorHandphone,
+      tanggalLahir,
+      jenisKelamin,
+      kode,
+      status,
+      rumahSakitId
+    });
+  }
+
   const classes = useStyles();
 
   return (
@@ -101,6 +185,7 @@ export default function SignIn() {
             name="nama"
             autoComplete="Nama"
             autoFocus
+            onChange={handleNamaChange}
           />
           <TextField
             variant="outlined"
@@ -111,30 +196,44 @@ export default function SignIn() {
             label="Nomor Handphone"
             id="no_hp"
             autoComplete="no_hp"
+            onChange={handleNomorHandphoneChange}
           />
           <TextField
             variant="outlined"
             id="date"
             label="Tanggal Lahir"
             type="date"
-            defaultValue={selectedDate}
+            defaultValue={tanggalLahir}
             className={classes.textField}
             InputLabelProps={{
               shrink: true,
             }}
             fullWidth
-            onChange={handleDateChange}
+            onChange={handleTanggalLahirChange}
             style={{marginTop: '10px'}}
           />
           <FormLabel component="legend" style={{marginTop: '15px'}}>Jenin Kelamin</FormLabel>
-          <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
-            <FormControlLabel value="wanita" control={<Radio />} label="Wanita" />
-            <FormControlLabel value="pria" control={<Radio />} label="Pria" />
+          <RadioGroup aria-label="gender" name="gender1" value={jenisKelamin} onChange={handleJenisKelaminChange}>
+            <FormControlLabel value="perempuan" control={<Radio />} label="Perempuan" />
+            <FormControlLabel value="laki-laki" control={<Radio />} label="Laki-laki" />
           </RadioGroup>
+          <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="kode"
+              label="Kode"
+              name="kode"
+              autoComplete="kode"
+              autoFocus
+              onChange={handleKodeChange}
+            />
           <FormControl variant="outlined" className={classes.formControl} style={{width: "100%", marginTop: '10px'}}>
             <InputLabel htmlFor="outlined-age-native-simple">Status</InputLabel>
             <Select
               native
+              required
               value={status}
               onChange={handleStatusChange}
               label="Status"
@@ -142,13 +241,32 @@ export default function SignIn() {
               //   name: 'age',
               //   id: 'outlined-age-native-simple',
               // }}
-              
             >
               <option aria-label="None" value="" />
               <option value={'pdp'}>PDP</option>
               <option value={'odp'}>ODP</option>
               <option value={'positif'}>Positif</option>
               <option value={'otg'}>OTG</option>
+            </Select>
+          </FormControl>
+          <FormControl variant="outlined" className={classes.formControl} style={{width: "100%", marginTop: '10px'}}>
+            <InputLabel htmlFor="outlined-age-native-simple">ID Rumah Sakit</InputLabel>
+            <Select
+              native
+              required
+              value={rumahSakitId}
+              onChange={handleRumahSakitIdChange}
+              label="ID Rumah Sakit"
+              // inputProps={{
+              //   name: 'age',
+              //   id: 'outlined-age-native-simple',
+              // }}
+            >
+              <option aria-label="None" value="" />
+              <option value={'1'}>1</option>
+              <option value={'2'}>2</option>
+              <option value={'3'}>3</option>
+              <option value={'4'}>4</option>
             </Select>
           </FormControl>
           <Button
