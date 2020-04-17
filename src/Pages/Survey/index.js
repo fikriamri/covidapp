@@ -15,13 +15,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import FormLabel from '@material-ui/core/FormLabel';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
 import axios from 'axios';
+import Snackbar from "../../Components/Snackbar"
 
-function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
 
 function Copyright() {
   return (
@@ -255,11 +251,7 @@ export default function SignIn() {
       <Box mt={8}>
         <Copyright />
       </Box>
-      <Snackbar open={openSnackbar.open} autoHideDuration={3000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity={openSnackbar.severity}>
-          {openSnackbar.message}
-        </Alert>
-      </Snackbar>
+      <Snackbar open={openSnackbar.open} severity={openSnackbar.severity} message={openSnackbar.message} handleClose={handleClose}/>
     </Container>
   );
 }

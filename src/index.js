@@ -7,11 +7,14 @@ import Register from './Pages/Register'
 import InputPasien from './Pages/InputPasien'
 import GoogleMaps from './Pages/GoogleMaps'
 import Report from './Pages/Report'
+import ListPasien from './Pages/ListPasien'
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./Redux/store";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <Router>
       {/* needed for immediately test function in netlify */}
       {/* <Route path="/" exact component={GoogleMaps}/> */}
@@ -23,9 +26,10 @@ ReactDOM.render(
       <Route path="/register" exact component={Register}/>
       <Route path="/survey" exact component={Survey}/>
       <Route path="/input-pasien" exact component={InputPasien}/>
+      <Route path="/list-pasien" exact component={ListPasien}/>
       <Route path="/google-maps" exact component={GoogleMaps}/>
     </Router>
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
