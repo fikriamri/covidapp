@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -68,6 +68,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignIn() {
+
+  useEffect(() => {
+    handleGetLocation();    
+  })
+
   const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
 
   const handleDateChange = (date) => {
@@ -101,8 +106,8 @@ export default function SignIn() {
    * @summary Get user location using navigator geolocation.
    * @return {undefined}
    */
-  const handleGetLocation = (e) => {
-    e.preventDefault();
+  const handleGetLocation = () => {
+    // e.preventDefault();
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(handleGetCoordinates, handleLocationError);
     } else {
@@ -211,7 +216,7 @@ export default function SignIn() {
             <FormControlLabel value="tidak" control={<Radio />} label="Tidak" />
             <FormControlLabel value="sakit" control={<Radio />} label="Sakit" />
           </RadioGroup>
-          <Button
+          {/* <Button
             type="submit"
             fullWidth
             variant="contained"
@@ -220,7 +225,7 @@ export default function SignIn() {
             onClick={handleGetLocation}
           >
             Share My Location
-          </Button>
+          </Button> */}
           <p>Your Latitude: {coordinates.latitude}</p>
           <p>Your Longitude: {coordinates.longitude}</p>
           <p>Your Location: {userAddress}</p>
