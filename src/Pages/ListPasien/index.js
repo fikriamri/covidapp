@@ -87,7 +87,7 @@ export default function ListPasien() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/pasien/list`, {
+      .get(`https://api.warung999.com/pasien/list`, {
           headers: {
               Authorization: `Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMSIsImlzX2FkbWluIjpmYWxzZSwiZXhwIjoxNTg3MjE0NTU5LCJqdGkiOiIxIn0.WHYG6F8CeCyjwDHpXYzRl4ld90V-YmMlnqp5ImO0D4gjsftIptyZUWH_UiZ94uDKxqvCP9pZ5znxKYZRJm5eEw`
           }
@@ -101,7 +101,7 @@ export default function ListPasien() {
 
     // Get Data Rumah Sakit
     axios
-      .get(`http://localhost:3001/rumahsakit/list`, {
+      .get(`https://api.warung999.com/rumahsakit/list`, {
           headers: {
               Authorization: `Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMSIsImlzX2FkbWluIjpmYWxzZSwiZXhwIjoxNTg3MjE0NTU5LCJqdGkiOiIxIn0.WHYG6F8CeCyjwDHpXYzRl4ld90V-YmMlnqp5ImO0D4gjsftIptyZUWH_UiZ94uDKxqvCP9pZ5znxKYZRJm5eEw`
           }

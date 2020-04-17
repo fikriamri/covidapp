@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -64,6 +64,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
 
+  useEffect(() => {
+    handleGetLocation();    
+  })
+
+
   const [openSnackbar, setOpenSnackbar] = React.useState({
     open: false,
     severity: "success",
@@ -104,8 +109,8 @@ export default function SignIn() {
    * @summary Get user location using navigator geolocation.
    * @return {undefined}
    */
-  const handleGetLocation = (e) => {
-    e.preventDefault();
+  const handleGetLocation = () => {
+    // e.preventDefault();
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(handleGetCoordinates, handleLocationError);
     } else {
@@ -173,7 +178,7 @@ export default function SignIn() {
   const handleSubmit = e => {
     e.preventDefault();
     axios
-      .post(`http://localhost:3001/report`, values)
+      .post(`https://api.warung999.com/report`, values)
       .then(() => {
         setOpenSnackbar({...openSnackbar, open: true, severity: "success", message: "Berhasil input data"})
       })
@@ -222,19 +227,6 @@ export default function SignIn() {
             <FormControlLabel value="ya" control={<Radio />} label="Ya" />
             <FormControlLabel value="tidak" control={<Radio />} label="Tidak" />
           </RadioGroup>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="secondary"
-            className={classes.submit}
-            onClick={handleGetLocation}
-          >
-            Share My Location
-          </Button>
-          <p>Your Latitude: {values.latitude}</p>
-          <p>Your Longitude: {values.longitude}</p>
-          <p>Your Location: {userAddress}</p>
           <Button
             type="submit"
             fullWidth
