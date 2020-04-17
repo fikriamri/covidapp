@@ -123,8 +123,8 @@ export default function SignIn() {
    * @return {undefined}
    */
   const handleGetCoordinates = (position) => {
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
+    const latitude = position.coords.latitude.toString();
+    const longitude = position.coords.longitude.toString();
     setValues({...values, latitude, longitude})
     handleGetUserLocation(latitude, longitude);
   }
@@ -176,20 +176,12 @@ export default function SignIn() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log("nilai value saat ini ", values)
     axios
-      .post(`https://api.warung999.com/report`, values, {
-        headers: { 
-          'Access-Control-Allow-Origin': '*',
-          // Authorization: "Bearer " + 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMSIsImlzX2FkbWluIjpmYWxzZSwiZXhwIjoxNTg3MTE2MDM1LCJqdGkiOiIxIn0.yoRWnFjH7211_idu3tki8RvkZ9XuiJ_gfonK32UteTsm4quXTsJ8kYepu_yN0RHR7keOhhXvuUIFVi-0wjvfew' 
-        }
-    })
-      .then(response => {
-        console.log("response ", response)
+      .post(`http://localhost:3001/report`, values)
+      .then(() => {
         setOpenSnackbar({...openSnackbar, open: true, severity: "success", message: "Berhasil input data"})
       })
-      .catch(err => {
-        console.log(err)
+      .catch(() => {
         setOpenSnackbar({...openSnackbar, open: true, severity: "error", message: "Terjadi Kesalahan"})
       })
   }
