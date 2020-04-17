@@ -1,28 +1,27 @@
 import React from 'react';
 import clsx from 'clsx';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from "@material-ui/core/RadioGroup"
 import Radio from '@material-ui/core/Radio';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import FormLabel from '@material-ui/core/FormLabel';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 import axios from 'axios';
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 function Copyright() {
   return (
@@ -68,31 +67,39 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignIn() {
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
+  const [openSnackbar, setOpenSnackbar] = React.useState({
+    open: false,
+    severity: "success",
+    message: ""
+  });
 
-  const [value, setValue] = React.useState('wanita');
-  console.log(value);
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
-    console.log(value);
-  };
-
-  const [status, setStatus] = React.useState('');
-
-  const handleStatusChange = (event) => {
-    setStatus(event.target.value)
-  };
-  const classes = useStyles();
-
-  const [coordinates, setCoordinates] = React.useState({
+  const [values, setValues] = React.useState({
+    kode: '1111111111',
+    rumah_sakit_id: 1,
+    longitude: '',
     latitude: '',
-    longitude: ''
-  })
+    kondisi: '',
+    suhu: '',
+    demam: ''
+  });
+
+  const handleChange = e => {
+    let newValue = { ...values };
+    newValue[e.target.name] = e.target.value;
+    setValues(newValue);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenSnackbar({...openSnackbar, open: false, message: ""});
+  };
+
+  
+  const classes = useStyles();
 
   const [userAddress, setUserAddress] = React.useState('');
   
@@ -118,11 +125,7 @@ export default function SignIn() {
   const handleGetCoordinates = (position) => {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
-    console.log(latitude)
-    setCoordinates({
-      latitude,
-      longitude
-    });
+    setValues({...values, latitude, longitude})
     handleGetUserLocation(latitude, longitude);
   }
 
@@ -167,9 +170,28 @@ export default function SignIn() {
       .get(url)
       .then((response) => {
         const userAddress = response.data.results[0].formatted_address;
-        console.log(response.data.results[0].formatted_address);
         setUserAddress(userAddress);
       });
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log("nilai value saat ini ", values)
+    axios
+      .post(`https://api.warung999.com/report`, values, {
+        headers: { 
+          'Access-Control-Allow-Origin': '*',
+          // Authorization: "Bearer " + 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMSIsImlzX2FkbWluIjpmYWxzZSwiZXhwIjoxNTg3MTE2MDM1LCJqdGkiOiIxIn0.yoRWnFjH7211_idu3tki8RvkZ9XuiJ_gfonK32UteTsm4quXTsJ8kYepu_yN0RHR7keOhhXvuUIFVi-0wjvfew' 
+        }
+    })
+      .then(response => {
+        console.log("response ", response)
+        setOpenSnackbar({...openSnackbar, open: true, severity: "success", message: "Berhasil input data"})
+      })
+      .catch(err => {
+        console.log(err)
+        setOpenSnackbar({...openSnackbar, open: true, severity: "error", message: "Terjadi Kesalahan"})
+      })
   }
 
   return (
@@ -188,7 +210,7 @@ export default function SignIn() {
         </Typography>
         <form className={classes.form} noValidate>
           <FormLabel component="legend" style={{marginTop: '15px'}}>Bagaimana kondisi anda sekarang?</FormLabel>
-          <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
+          <RadioGroup aria-label="gender" name="kondisi" value={values.kondisi} onChange={handleChange}>
             <FormControlLabel value="sangat sehat" control={<Radio />} label="Sangat Sehat" />
             <FormControlLabel value="kurang sehat" control={<Radio />} label="Kurang Sehat" />
             <FormControlLabel value="sakit" control={<Radio />} label="Sakit" />
@@ -197,19 +219,20 @@ export default function SignIn() {
           <FormControl fullWidth className={clsx(classes.margin, classes.textField)} variant="outlined">
           <OutlinedInput
             id="outlined-adornment-weight"
+            name="suhu"
             endAdornment={<InputAdornment position="end">{'\u00b0'} C</InputAdornment>}
             aria-describedby="outlined-weight-helper-text"
             inputProps={{
               'aria-label': 'weight',
             }}
+            onChange={handleChange}
             labelWidth={0}
           />
         </FormControl>
           <FormLabel component="legend" style={{marginTop: '15px'}}>Apakah anda sedang sakit demam?</FormLabel>
-          <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
+          <RadioGroup aria-label="gender" name="demam" value={values.demam} onChange={handleChange}>
             <FormControlLabel value="ya" control={<Radio />} label="Ya" />
             <FormControlLabel value="tidak" control={<Radio />} label="Tidak" />
-            <FormControlLabel value="sakit" control={<Radio />} label="Sakit" />
           </RadioGroup>
           <Button
             type="submit"
@@ -221,8 +244,8 @@ export default function SignIn() {
           >
             Share My Location
           </Button>
-          <p>Your Latitude: {coordinates.latitude}</p>
-          <p>Your Longitude: {coordinates.longitude}</p>
+          <p>Your Latitude: {values.latitude}</p>
+          <p>Your Longitude: {values.longitude}</p>
           <p>Your Location: {userAddress}</p>
           <Button
             type="submit"
@@ -230,6 +253,7 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handleSubmit}
           >
             Submit
           </Button>
@@ -239,6 +263,11 @@ export default function SignIn() {
       <Box mt={8}>
         <Copyright />
       </Box>
+      <Snackbar open={openSnackbar.open} autoHideDuration={3000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity={openSnackbar.severity}>
+          {openSnackbar.message}
+        </Alert>
+      </Snackbar>
     </Container>
   );
 }
