@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -16,7 +17,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import FormLabel from '@material-ui/core/FormLabel';
 import axios from 'axios';
-import Snackbar from "../../Components/Snackbar"
+import Snackbar from "../../Components/Snackbar";
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 function Copyright() {
@@ -62,11 +65,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+export default function Survey(props) {
+
+  const history = useHistory();
 
   useEffect(() => {
-    handleGetLocation();    
+    handleGetLocation();  
   })
+
+  useEffect(() => {
+    if(props.location.search.length > 0){
+      const [ kode, rumah_sakit_id] = props.location.search.split("&")
+      setValues({...values, rumah_sakit_id: parseInt(rumah_sakit_id) , kode: kode.slice(1, kode.length)})
+    }
+  }, [props.location.search])
 
 
   const [openSnackbar, setOpenSnackbar] = React.useState({
@@ -75,9 +87,12 @@ export default function SignIn() {
     message: ""
   });
 
+  const [openBackdrop, setOpenBackdrop] = React.useState(false);
+
+
   const [values, setValues] = React.useState({
-    kode: '1111111111',
-    rumah_sakit_id: 1,
+    kode: '',
+    rumah_sakit_id: 0,
     longitude: '',
     latitude: '',
     kondisi: '',
@@ -91,13 +106,13 @@ export default function SignIn() {
     setValues(newValue);
   };
 
-  const handleClose = (event, reason) => {
+  const handleCloseSnackbar = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
-
     setOpenSnackbar({...openSnackbar, open: false, message: ""});
   };
+
 
   
   const classes = useStyles();
@@ -177,13 +192,18 @@ export default function SignIn() {
 
   const handleSubmit = e => {
     e.preventDefault();
+    setOpenBackdrop(true)
     axios
-      .post(`https://api.warung999.com/report`, values)
+      .post(`http://localhost:3001/report`, values)
       .then(() => {
+        setOpenBackdrop(false)
         setOpenSnackbar({...openSnackbar, open: true, severity: "success", message: "Berhasil input data"})
+        history.replace("/thank-you")
       })
       .catch(() => {
+        setOpenBackdrop(false)
         setOpenSnackbar({...openSnackbar, open: true, severity: "error", message: "Terjadi Kesalahan"})
+        history.replace("/thank-you")
       })
   }
 
@@ -243,7 +263,10 @@ export default function SignIn() {
       <Box mt={8}>
         <Copyright />
       </Box>
-      <Snackbar open={openSnackbar.open} severity={openSnackbar.severity} message={openSnackbar.message} handleClose={handleClose}/>
+      <Snackbar open={openSnackbar.open} severity={openSnackbar.severity} message={openSnackbar.message} handleClose={handleCloseSnackbar}/>
+      <Backdrop className={classes.backdrop} open={openBackdrop}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </Container>
   );
 }

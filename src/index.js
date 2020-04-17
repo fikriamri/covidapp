@@ -8,6 +8,7 @@ import InputPasien from './Pages/InputPasien'
 import GoogleMaps from './Pages/GoogleMaps'
 import Report from './Pages/Report'
 import ListPasien from './Pages/ListPasien'
+import ThankYou from './Pages/ThankYou'
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -27,6 +28,7 @@ ReactDOM.render(
       <Route path="/survey" exact component={Survey}/>
       <Route path="/input-pasien" exact component={InputPasien}/>
       <Route path="/list-pasien" exact component={ListPasien}/>
+      <Route path="/thank-you" exact component={ThankYou}/>
       <Route path="/google-maps" exact component={GoogleMaps}/>
     </Router>
   </Provider>,
