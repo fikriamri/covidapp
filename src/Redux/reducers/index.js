@@ -5,7 +5,7 @@ import loginReducer from './login';
 
 const reducers = combineReducers({
     rs: rsReducer,
-    login: loginReducer,
+    loginReducer,
 });
 
 export default reducers;

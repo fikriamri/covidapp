@@ -7,7 +7,7 @@ import storage from 'redux-persist/lib/storage';
 const persistConfig = {
   key: 'store',
   storage,
-  whitelist: ['login'],
+  whitelist: ['loginReducer'],
 };
 
 // Persisting reducers

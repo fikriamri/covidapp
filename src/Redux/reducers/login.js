@@ -1,4 +1,5 @@
 const initialState = {
+  isLogin: false,
   token: '',
   userData: {}
 };
@@ -8,6 +9,7 @@ export default function LoginReducer(state = initialState, action) {
     case 'LOGIN':
       return {
         ...state,
+        isLogin: true,
         token: action.payload.token,
         userData: action.payload.userData
       };
