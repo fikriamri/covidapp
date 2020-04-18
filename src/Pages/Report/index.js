@@ -8,7 +8,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import Snackbar from "../../Components/Snackbar"
+import Snackbar from "../../Components/Snackbar";
+import Menu from "../../Components/Menu";
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
@@ -174,6 +175,7 @@ export default function Report() {
 
   return (
     <Paper className={classes.root}>
+      <Menu />
       <TableContainer className={classes.container}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>

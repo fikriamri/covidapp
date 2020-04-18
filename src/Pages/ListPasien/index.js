@@ -10,7 +10,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import axios from 'axios';
-import Snackbar from "../../Components/Snackbar"
+import Snackbar from "../../Components/Snackbar";
+import Menu from "../../Components/Menu";
 import { setListRs } from "../../Redux/actions/rs"
 
 const columns = [
@@ -134,6 +135,7 @@ export default function ListPasien() {
   return (
       <React.Fragment>
         <Paper className={classes.root}>
+        <Menu />
         <TableContainer className={classes.container}>
             <Table stickyHeader aria-label="sticky table">
             <TableHead>

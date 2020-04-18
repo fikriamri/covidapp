@@ -15,6 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import FormLabel from '@material-ui/core/FormLabel';
+import Menu from "../../Components/Menu";
 
 function Copyright() {
   return (
@@ -160,6 +161,7 @@ export default function InputPasien() {
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
+      <Menu />
       <div className={classes.paper}>
       <Grid
         container

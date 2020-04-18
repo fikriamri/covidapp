@@ -18,6 +18,7 @@ import Container from '@material-ui/core/Container';
 import FormLabel from '@material-ui/core/FormLabel';
 import axios from 'axios';
 import Snackbar from "../../Components/Snackbar";
+import Menu from "../../Components/Menu";
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -210,6 +211,7 @@ export default function Survey(props) {
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
+      <Menu />
       <div className={classes.paper}>
       <Grid
         container

@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignIn(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -68,7 +68,7 @@ export default function SignIn() {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    const baseUrl = 'https://api.warung999.com';
+    const baseUrl = 'https://api.warung999.com/';
     const cred = `/login?username=${username}&password=${password}`;
     const url = `${baseUrl}${cred}`;
 
@@ -76,6 +76,7 @@ export default function SignIn() {
       .get(url)
       .then((response) => {
         dispatch(login(response.data.token, jwtDecode(response.data.token)))
+        props.history.push('/report')
         console.log(response.data.token)
       });
   }

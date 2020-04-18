@@ -25,7 +25,7 @@ ReactDOM.render(
       <Route path="/login" exact component={Login}/>
       <Route path="/report" exact component={Report}/>
       <Route path="/register" exact component={Register}/>
-      <Route path="/survey" exact component={Survey}/>
+      {/* <Route path="/survey" exact component={Survey}/> */}
       <Route path="/input-pasien" exact component={InputPasien}/>
       <Route path="/list-pasien" exact component={ListPasien}/>
       <Route path="/thank-you" exact component={ThankYou}/>
