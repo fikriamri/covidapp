@@ -11,6 +11,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
+import { login } from "../../Redux/actions/login"
+import { useDispatch, useSelector } from 'react-redux';
+import jwtDecode from 'jwt-decode';
 
 function Copyright() {
   return (
@@ -47,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const [username, setUsername] = React.useState('');
 
@@ -71,7 +75,8 @@ export default function SignIn() {
     await axios
       .get(url)
       .then((response) => {
-        console.log(response)
+        dispatch(login(response.data.token, jwtDecode(response.data.token)))
+        console.log(response.data.token)
       });
   }
 
