@@ -195,7 +195,7 @@ export default function Survey(props) {
     e.preventDefault();
     setOpenBackdrop(true)
     axios
-      .post(`http://localhost:3001/report`, values)
+      .post(`https://elated-bose-485233.netlify.app/report`, values)
       .then(() => {
         setOpenBackdrop(false)
         setOpenSnackbar({...openSnackbar, open: true, severity: "success", message: "Berhasil input data"})
