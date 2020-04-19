@@ -72,7 +72,7 @@ export default function Survey(props) {
 
   useEffect(() => {
     handleGetLocation();  
-  })
+  }, [])
 
   useEffect(() => {
     if(props.location.search.length > 0){
