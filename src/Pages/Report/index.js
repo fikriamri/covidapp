@@ -117,7 +117,7 @@ export default function Report() {
     axios
     .get(`https://api.warung999.com/report/list`, {
         headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMSIsImlzX2FkbWluIjpmYWxzZSwiZXhwIjoxNTg3MjE0NTU5LCJqdGkiOiIxIn0.WHYG6F8CeCyjwDHpXYzRl4ld90V-YmMlnqp5ImO0D4gjsftIptyZUWH_UiZ94uDKxqvCP9pZ5znxKYZRJm5eEw`
+            Authorization: `Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMSIsImlzX2FkbWluIjpmYWxzZSwiZXhwIjoxNTg3Mzg1NzEyLCJqdGkiOiIxIn0.5Rm2DQnamlkrl4cveUy82ip_Z872tH6VrfgpNNqrBz1RZ01dk_UOvU2Ouats4eboyf6i0y3qfglKqsD9sccH5g`
         }
     })
     .then(res => {
@@ -128,9 +128,10 @@ export default function Report() {
     })
 
     // Get Data Pasien
-    https://api.warung999.com/pasien/list`, {
+    axios
+    .get(`https://api.warung999.com/pasien/list`, {
         headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMSIsImlzX2FkbWluIjpmYWxzZSwiZXhwIjoxNTg3MjE0NTU5LCJqdGkiOiIxIn0.WHYG6F8CeCyjwDHpXYzRl4ld90V-YmMlnqp5ImO0D4gjsftIptyZUWH_UiZ94uDKxqvCP9pZ5znxKYZRJm5eEw`
+            Authorization: `Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMSIsImlzX2FkbWluIjpmYWxzZSwiZXhwIjoxNTg3Mzg1NzEyLCJqdGkiOiIxIn0.5Rm2DQnamlkrl4cveUy82ip_Z872tH6VrfgpNNqrBz1RZ01dk_UOvU2Ouats4eboyf6i0y3qfglKqsD9sccH5g`
         }
     })
     .then(res => {
@@ -141,9 +142,10 @@ export default function Report() {
     })
 
   // Get Data Rumah Sakit
-  https://api.warung999.com/rumahsakit/list`, {
+  axios
+    .get(`https://api.warung999.com/rumahsakit/list`, {
         headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMSIsImlzX2FkbWluIjpmYWxzZSwiZXhwIjoxNTg3MjE0NTU5LCJqdGkiOiIxIn0.WHYG6F8CeCyjwDHpXYzRl4ld90V-YmMlnqp5ImO0D4gjsftIptyZUWH_UiZ94uDKxqvCP9pZ5znxKYZRJm5eEw`
+            Authorization: `Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMSIsImlzX2FkbWluIjpmYWxzZSwiZXhwIjoxNTg3Mzg1NzEyLCJqdGkiOiIxIn0.5Rm2DQnamlkrl4cveUy82ip_Z872tH6VrfgpNNqrBz1RZ01dk_UOvU2Ouats4eboyf6i0y3qfglKqsD9sccH5g`
         }
     })
     .then(res => {
