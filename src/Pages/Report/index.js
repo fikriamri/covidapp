@@ -117,7 +117,7 @@ export default function Report() {
     axios
     .get(`https://api.warung999.com/report/list`, {
         headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMSIsImlzX2FkbWluIjpmYWxzZSwiZXhwIjoxNTg3Mzg1NzEyLCJqdGkiOiIxIn0.5Rm2DQnamlkrl4cveUy82ip_Z872tH6VrfgpNNqrBz1RZ01dk_UOvU2Ouats4eboyf6i0y3qfglKqsD9sccH5g`
+            Authorization: `Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMSIsImlzX2FkbWluIjpmYWxzZSwiZXhwIjoxNTg3NTY1ODk0LCJqdGkiOiIxIn0.iqL08eEj4blYG_BB4g5_wgy7c6S0V30j7YOq_zyHa9BXNUlPf_UYJ-K7iaaOsASvmp2kDv26Vm4MCSwO-cvpyw`
         }
     })
     .then(res => {
@@ -131,7 +131,7 @@ export default function Report() {
     axios
     .get(`https://api.warung999.com/pasien/list`, {
         headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMSIsImlzX2FkbWluIjpmYWxzZSwiZXhwIjoxNTg3Mzg1NzEyLCJqdGkiOiIxIn0.5Rm2DQnamlkrl4cveUy82ip_Z872tH6VrfgpNNqrBz1RZ01dk_UOvU2Ouats4eboyf6i0y3qfglKqsD9sccH5g`
+            Authorization: `Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMSIsImlzX2FkbWluIjpmYWxzZSwiZXhwIjoxNTg3NTY1ODk0LCJqdGkiOiIxIn0.iqL08eEj4blYG_BB4g5_wgy7c6S0V30j7YOq_zyHa9BXNUlPf_UYJ-K7iaaOsASvmp2kDv26Vm4MCSwO-cvpyw`
         }
     })
     .then(res => {
@@ -145,7 +145,7 @@ export default function Report() {
   axios
     .get(`https://api.warung999.com/rumahsakit/list`, {
         headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMSIsImlzX2FkbWluIjpmYWxzZSwiZXhwIjoxNTg3Mzg1NzEyLCJqdGkiOiIxIn0.5Rm2DQnamlkrl4cveUy82ip_Z872tH6VrfgpNNqrBz1RZ01dk_UOvU2Ouats4eboyf6i0y3qfglKqsD9sccH5g`
+            Authorization: `Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMSIsImlzX2FkbWluIjpmYWxzZSwiZXhwIjoxNTg3NTY1ODk0LCJqdGkiOiIxIn0.iqL08eEj4blYG_BB4g5_wgy7c6S0V30j7YOq_zyHa9BXNUlPf_UYJ-K7iaaOsASvmp2kDv26Vm4MCSwO-cvpyw`
         }
     })
     .then(res => {
