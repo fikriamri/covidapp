@@ -9,6 +9,7 @@ import GoogleMaps from './Pages/GoogleMaps'
 import Report from './Pages/Report'
 import ListPasien from './Pages/ListPasien'
 import ThankYou from './Pages/ThankYou'
+import Auth from './Components/Auth'
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -23,12 +24,12 @@ ReactDOM.render(
       {/* <Route path="/" exact component={Main}/>
       <Route path="/App" exact component={App}/> */}
       <Route path="/login" exact component={Login}/>
-      <Route path="/report" exact component={Report}/>
+      <Route path="/report" exact component={Auth(Report)}/>
       <Route path="/register" exact component={Register}/>
       {/* <Route path="/survey" exact component={Survey}/> */}
-      <Route path="/input-pasien" exact component={InputPasien}/>
-      <Route path="/list-pasien" exact component={ListPasien}/>
-      <Route path="/thank-you" exact component={ThankYou}/>
+      <Route path="/input-pasien" exact component={Auth(InputPasien)}/>
+      <Route path="/list-pasien" exact component={Auth(ListPasien)}/>
+      <Route path="/thank-you" exact component={Auth(ThankYou)}/>
       <Route path="/google-maps" exact component={GoogleMaps}/>
     </Router>
   </Provider>,
