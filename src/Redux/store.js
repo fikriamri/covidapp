@@ -15,6 +15,8 @@ const persistedReducer = persistReducer(persistConfig, reducers);
 
 const store = createStore(persistedReducer);
 
+store.subscribe(() => localStorage.setItem('token', store.getState().loginReducer.token))
+
 export const persistor = persistStore(store);
 
 export default store;

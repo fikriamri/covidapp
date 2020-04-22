@@ -87,14 +87,8 @@ const useStyles = makeStyles({
 });
 
 export default function Report() {
-  const { loginReducer } = useSelector(state => ({
-    loginReducer: state.loginReducer,
-  }));
-  // console.log(loginReducer)
-  const token = loginReducer.token;
-  console.log(token)
-
   const classes = useStyles();
+  const loginReducer = useSelector(state => state.loginReducer);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [reportData, setReportData] = React.useState([]);
@@ -106,18 +100,13 @@ export default function Report() {
     message: ""
   });
 
-  console.log({
-    reportData,
-    pasienData, 
-    rsData
-  })
 
   useEffect( () => {
     // Get Data Report
     axios
     .get(`https://api.warung999.com/report/list`, {
         headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMSIsImlzX2FkbWluIjpmYWxzZSwiZXhwIjoxNTg3NTY1ODk0LCJqdGkiOiIxIn0.iqL08eEj4blYG_BB4g5_wgy7c6S0V30j7YOq_zyHa9BXNUlPf_UYJ-K7iaaOsASvmp2kDv26Vm4MCSwO-cvpyw`
+            Authorization: `Bearer ${loginReducer.token}`
         }
     })
     .then(res => {
@@ -131,7 +120,7 @@ export default function Report() {
     axios
     .get(`https://api.warung999.com/pasien/list`, {
         headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMSIsImlzX2FkbWluIjpmYWxzZSwiZXhwIjoxNTg3NTY1ODk0LCJqdGkiOiIxIn0.iqL08eEj4blYG_BB4g5_wgy7c6S0V30j7YOq_zyHa9BXNUlPf_UYJ-K7iaaOsASvmp2kDv26Vm4MCSwO-cvpyw`
+            Authorization: `Bearer ${loginReducer.token}`
         }
     })
     .then(res => {
@@ -145,7 +134,7 @@ export default function Report() {
   axios
     .get(`https://api.warung999.com/rumahsakit/list`, {
         headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMSIsImlzX2FkbWluIjpmYWxzZSwiZXhwIjoxNTg3NTY1ODk0LCJqdGkiOiIxIn0.iqL08eEj4blYG_BB4g5_wgy7c6S0V30j7YOq_zyHa9BXNUlPf_UYJ-K7iaaOsASvmp2kDv26Vm4MCSwO-cvpyw`
+            Authorization: `Bearer ${loginReducer.token}`
         }
     })
     .then(res => {

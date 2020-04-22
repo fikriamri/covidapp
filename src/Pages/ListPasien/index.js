@@ -76,6 +76,7 @@ const useStyles = makeStyles({
 export default function ListPasien() {
   const classes = useStyles();
   const Rslist = useSelector(state => state.rs.data);
+  const loginReducer = useSelector(state => state.loginReducer);
   const dispatch = useDispatch();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -90,7 +91,7 @@ export default function ListPasien() {
     axios
       .get(`https://api.warung999.com/pasien/list`, {
           headers: {
-              Authorization: `Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMSIsImlzX2FkbWluIjpmYWxzZSwiZXhwIjoxNTg3NTY1ODk0LCJqdGkiOiIxIn0.iqL08eEj4blYG_BB4g5_wgy7c6S0V30j7YOq_zyHa9BXNUlPf_UYJ-K7iaaOsASvmp2kDv26Vm4MCSwO-cvpyw`
+              Authorization: `Bearer ${loginReducer.token}`
           }
       })
       .then(res => {
@@ -104,7 +105,7 @@ export default function ListPasien() {
     axios
       .get(`https://api.warung999.com/rumahsakit/list`, {
           headers: {
-              Authorization: `Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMSIsImlzX2FkbWluIjpmYWxzZSwiZXhwIjoxNTg3NTY1ODk0LCJqdGkiOiIxIn0.iqL08eEj4blYG_BB4g5_wgy7c6S0V30j7YOq_zyHa9BXNUlPf_UYJ-K7iaaOsASvmp2kDv26Vm4MCSwO-cvpyw`
+              Authorization: `Bearer ${loginReducer.token}`
           }
       })
       .then(res => {

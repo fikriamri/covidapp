@@ -1,6 +1,6 @@
 const initialState = {
   isLogin: false,
-  token: '',
+  token: localStorage.getItem('token'),
   userData: {}
 };
 
