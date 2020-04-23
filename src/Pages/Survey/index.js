@@ -70,23 +70,15 @@ export default function Survey(props) {
 
   const history = useHistory();
 
-  useEffect(() => {
-    handleGetLocation();  
-    if(props.location.search.length > 0){
-      const [ kode, rumah_sakit_id] = props.location.search.split("&")
-      setValues({...values, rumah_sakit_id: parseInt(rumah_sakit_id) , kode: kode.slice(1, kode.length)})
-    }
-  }, [])
-
   const [openSnackbar, setOpenSnackbar] = React.useState({
     open: false,
     severity: "success",
     message: ""
   });
-
+  
   const [openBackdrop, setOpenBackdrop] = React.useState(false);
-
-
+  
+  
   const [values, setValues] = React.useState({
     kode: '',
     rumah_sakit_id: 0,
@@ -97,6 +89,18 @@ export default function Survey(props) {
     demam: ''
   });
 
+  useEffect(() => {
+    handleGetLocation();  
+  }, [])
+
+  useEffect(() => {
+    if(props.location.search.length > 0){
+      const [ kode, rumah_sakit_id] = props.location.search.split("&")
+      setValues({...values, rumah_sakit_id: parseInt(rumah_sakit_id) , kode: kode.slice(1, kode.length)})
+    }
+  }, [values.latitude])
+  
+  console.log('nilai values', values)
   const handleChange = e => {
     let newValue = { ...values };
     newValue[e.target.name] = e.target.value;
