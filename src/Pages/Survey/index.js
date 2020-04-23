@@ -72,15 +72,11 @@ export default function Survey(props) {
 
   useEffect(() => {
     handleGetLocation();  
-  }, [])
-
-  useEffect(() => {
     if(props.location.search.length > 0){
       const [ kode, rumah_sakit_id] = props.location.search.split("&")
       setValues({...values, rumah_sakit_id: parseInt(rumah_sakit_id) , kode: kode.slice(1, kode.length)})
     }
-  }, [props.location.search])
-
+  }, [])
 
   const [openSnackbar, setOpenSnackbar] = React.useState({
     open: false,
