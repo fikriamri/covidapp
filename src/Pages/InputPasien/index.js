@@ -55,15 +55,6 @@ export default function InputPasien() {
 
   const handleNamaChange = (event) => {
     setNama(event.target.value);
-    console.log({
-      nama,
-      nomorHandphone,
-      tanggalLahir,
-      jenisKelamin,
-      kode,
-      status,
-      rumahSakitId
-    });
   }
 
   const [nomorHandphone, setNomorHandphone] = React.useState('');

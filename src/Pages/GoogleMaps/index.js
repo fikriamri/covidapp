@@ -25,7 +25,6 @@ class GoogleMaps extends React.Component {
       latitude: position.coords.latitude,
       longitude: position.coords.longitude,
     })
-    console.log(position.coords);
   }
 
   handleLocationError = (error) => {
@@ -64,7 +63,6 @@ class GoogleMaps extends React.Component {
       .get(url)
       .then((response) => {
         const userAddress = response.data.results[0].formatted_address;
-        console.log(response.data.results[0].formatted_address);
         this.setState({
           userAddress
         })
