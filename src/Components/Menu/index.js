@@ -1,7 +1,7 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import React from "react";
+import Button from "@material-ui/core/Button";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 import { Link } from "react-router-dom";
 
 export default function SimpleMenu() {
@@ -17,7 +17,12 @@ export default function SimpleMenu() {
 
   return (
     <div>
-      <Button variant="popover" aria-controls="menu" aria-haspopup="true" onClick={handleClick}>
+      <Button
+        variant="popover"
+        aria-controls="menu"
+        aria-haspopup="true"
+        onClick={handleClick}
+      >
         Open Menu
       </Button>
       <Menu
@@ -27,10 +32,21 @@ export default function SimpleMenu() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <Link to="/login"><MenuItem onClick={handleClose}>Login</MenuItem></Link>
-        <Link to="/report"><MenuItem onClick={handleClose}>Report</MenuItem></Link>
-        <Link to="/list-pasien"><MenuItem onClick={handleClose}>List Pasien</MenuItem></Link>
-        <Link to="/input-pasien"><MenuItem onClick={handleClose}>Input Pasien</MenuItem></Link>
+        <Link to="/login">
+          <MenuItem onClick={handleClose}>Login</MenuItem>
+        </Link>
+        <Link to="/report">
+          <MenuItem onClick={handleClose}>Report</MenuItem>
+        </Link>
+        <Link to="/list-pasien">
+          <MenuItem onClick={handleClose}>List Pasien</MenuItem>
+        </Link>
+        <Link to="/input-pasien">
+          <MenuItem onClick={handleClose}>Input Pasien</MenuItem>
+        </Link>
+        <Link to="/setting">
+          <MenuItem onClick={handleClose}>Setting</MenuItem>
+        </Link>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
     </div>
