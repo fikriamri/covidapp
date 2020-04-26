@@ -11,7 +11,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Snackbar from "../../Components/Snackbar";
 import Menu from "../../Components/Menu";
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 const columns = [
@@ -87,9 +86,8 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Report() {
+export default function Report({ match }) {
   const classes = useStyles();
-  const history = useHistory();
   const loginReducer = useSelector(state => state.loginReducer);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -105,8 +103,9 @@ export default function Report() {
 
   useEffect( () => {
     // Get Data Report
+
     axios
-    .get(`https://api.warung999.com/report/list`, {
+    .get(`https://api.warung999.com/report/list?kode=${match.params.kode}`, {
         headers: {
             Authorization: `Bearer ${loginReducer.token}`
         }
@@ -185,7 +184,7 @@ export default function Report() {
           <TableBody>
             {reportData.length > 0 ? reportData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
               return (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.code} onClick={() => history.push(`/report/${row.kode}`)}>
+                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                   {columns.map((column) => {
                     let value;
                     if (column.id === 'waktuReport') {

@@ -100,7 +100,6 @@ export default function Survey(props) {
     }
   }, [values.latitude])
   
-  console.log('nilai values', values)
   const handleChange = e => {
     let newValue = { ...values };
     newValue[e.target.name] = e.target.value;

@@ -8,6 +8,7 @@ import InputPasien from './Pages/InputPasien'
 import GoogleMaps from './Pages/GoogleMaps'
 import Report from './Pages/Report'
 import ListPasien from './Pages/ListPasien'
+import DetailPasien from './Pages/DetailPasien'
 import ThankYou from './Pages/ThankYou'
 import Auth from './Components/Auth'
 import * as serviceWorker from './serviceWorker';
@@ -29,6 +30,7 @@ ReactDOM.render(
       {/* <Route path="/survey" exact component={Survey}/> */}
       <Route path="/input-pasien" exact component={Auth(InputPasien)}/>
       <Route path="/list-pasien" exact component={Auth(ListPasien)}/>
+      <Route path="/report/:kode" exact component={Auth(DetailPasien)}/>
       <Route path="/thank-you" exact component={Auth(ThankYou)}/>
       <Route path="/google-maps" exact component={GoogleMaps}/>
     </Router>
