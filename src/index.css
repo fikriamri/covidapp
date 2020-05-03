@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* #fix-marker {
+  position: absolute;
+  background-image: url(http://maps.google.com/mapfiles/ms/icons/red-dot.png) !important;
+  content: '';
+  background-size: 45px;
+  width: 45px;
+  height: 45px;
+  margin: -175px 0 0 176px;
+  z-index: 1;
+} */
