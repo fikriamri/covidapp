@@ -95,6 +95,7 @@ export default function InputPasien() {
   })
   
   const handleChange = e => {
+    console.log("nilai state ", state)
     let newValue = { ...state };
     newValue[e.target.name] = e.target.value;
     setState(newValue);
@@ -137,6 +138,7 @@ export default function InputPasien() {
   };
 
   useEffect(() => {
+    console.log("kepanggil")
     navigator.geolocation.getCurrentPosition(async position => {
       const { latitude, longitude } = position.coords;
       axios
@@ -195,7 +197,6 @@ export default function InputPasien() {
   }
 
   const classes = useStyles();
-  console.log(state)
 
   return (
     <Container component="main" maxWidth="xs">
@@ -223,7 +224,7 @@ export default function InputPasien() {
             name="nama"
             autoComplete="Nama"
             autoFocus
-            onChange={handleChange}
+            onChange={(e) => handleChange(e)}
           />
           <TextField
             variant="outlined"
@@ -234,7 +235,7 @@ export default function InputPasien() {
             label="Nomor Handphone"
             id="nomorHandphone"
             autoComplete="nomorHandphone"
-            onChange={handleChange}
+            onChange={(e) => handleChange(e)}
           />
           <TextField
             variant="outlined"
@@ -248,7 +249,7 @@ export default function InputPasien() {
               shrink: true,
             }}
             fullWidth
-            onChange={handleChange}
+            onChange={(e) => handleChange(e)}
             style={{marginTop: '10px'}}
           />
           <FormLabel component="legend" style={{marginTop: '15px'}}>Jenin Kelamin</FormLabel>
@@ -266,7 +267,7 @@ export default function InputPasien() {
               name="kode"
               autoComplete="kode"
               autoFocus
-              onChange={handleChange}
+              onChange={(e) => handleChange(e)}
             />
             <TextField
               variant="outlined"
@@ -278,7 +279,7 @@ export default function InputPasien() {
               name="email"
               autoComplete="email"
               autoFocus
-              onChange={handleChange}
+              onChange={(e) => handleChange(e)}
             />
           <FormControl variant="outlined" className={classes.formControl} style={{width: "100%", marginTop: '10px'}}>
             <InputLabel htmlFor="outlined-age-native-simple">Status</InputLabel>
@@ -287,7 +288,7 @@ export default function InputPasien() {
               required
               name="status"
               value={state.status}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e)}
               label="Status"
             >
               <option aria-label="None" value="" />

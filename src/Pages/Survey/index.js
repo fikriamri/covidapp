@@ -197,12 +197,12 @@ export default function Survey(props) {
       .post(`https://api.warung999.com/report`, values)
       .then(() => {
         setOpenBackdrop(false)
-        setOpenSnackbar({...openSnackbar, open: true, severity: "success", message: "Berhasil input data"})
+        setOpenSnackbar({ ...openSnackbar, open: true, severity: "success", message: "Berhasil input data"})
         history.replace("/thank-you")
       })
       .catch(() => {
         setOpenBackdrop(false)
-        setOpenSnackbar({...openSnackbar, open: true, severity: "error", message: "Terjadi Kesalahan"})
+        setOpenSnackbar({ ...openSnackbar, open: true, severity: "error", message: "Terjadi Kesalahan"})
         history.replace("/thank-you")
       })
   }
